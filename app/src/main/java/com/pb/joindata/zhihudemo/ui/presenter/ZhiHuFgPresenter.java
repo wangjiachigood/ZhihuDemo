@@ -1,6 +1,5 @@
 package com.pb.joindata.zhihudemo.ui.presenter;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.pb.joindata.zhihudemo.bean.zhihu.NewsTimeLine;
@@ -17,13 +16,11 @@ import java.util.List;
  */
 
 public class ZhiHuFgPresenter implements IBasePresenter {
-    private Context mContext;
     private FragmentContract.FragmentView mFragmentView;
     private FragmentContract.FragmentModel mFragmentModel;
     private List<NewsTimeLine> mNews = new ArrayList<>();//请求到的电影信息对象集合
 
-    public ZhiHuFgPresenter(Context mContext, FragmentContract.FragmentView mView) {
-        this.mContext = mContext;
+    public ZhiHuFgPresenter(FragmentContract.FragmentView mView) {
         this.mFragmentView = mView;
         mFragmentModel = new ZhihuModle();
     }
@@ -33,7 +30,7 @@ public class ZhiHuFgPresenter implements IBasePresenter {
         mFragmentModel.getMovie(new OnHttpCallBack<NewsTimeLine>() {
             @Override
             public void onSuccessful(NewsTimeLine newsTimeLine) {
-                mNews.add((NewsTimeLine) newsTimeLine.getTop_stories());
+                mNews.add(newsTimeLine);
                 mFragmentView.showData(mNews);
                 Log.e("------>", newsTimeLine.toString());
             }

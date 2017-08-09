@@ -25,12 +25,12 @@ public class Fragment extends BaseFragment<ZhiHuFgPresenter> implements Fragment
     private FragmentContract.FragmentView mFragmentView;
     @Override
     protected ZhiHuFgPresenter InitPresenter() {
-        return new ZhiHuFgPresenter(getContext(),mFragmentView);
+        return new ZhiHuFgPresenter(this);
     }
 
     @Override
     public void initView(View view) {
-        mPresenter=new ZhiHuFgPresenter(getContext(),mFragmentView);
+        mPresenter=new ZhiHuFgPresenter(this);
         mPresenter.getData();
         mRecyclerView= (RecyclerView) view.findViewById(R.id.rv_list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));//设置为listview的布局
