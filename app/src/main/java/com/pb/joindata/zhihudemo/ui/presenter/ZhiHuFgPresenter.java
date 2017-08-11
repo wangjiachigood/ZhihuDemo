@@ -18,6 +18,7 @@ import java.util.List;
 public class ZhiHuFgPresenter implements IBasePresenter {
     private FragmentContract.FragmentView mFragmentView;
     private FragmentContract.FragmentModel mFragmentModel;
+    private boolean isFirst = true;
     private List<NewsTimeLine> mNews = new ArrayList<>();//请求到的电影信息对象集合
 
     public ZhiHuFgPresenter(FragmentContract.FragmentView mView) {
@@ -27,11 +28,19 @@ public class ZhiHuFgPresenter implements IBasePresenter {
 
     @Override
     public void getData() {
+        if (isFirst) {
+            mFragmentView.showProgress();
+            isFirst = !isFirst;
+        } else {
+            mFragmentView.hideProgress();
+        }
         mFragmentModel.getMovie(new OnHttpCallBack<NewsTimeLine>() {
             @Override
             public void onSuccessful(NewsTimeLine newsTimeLine) {
                 mNews.add(newsTimeLine);
                 mFragmentView.showData(mNews);
+                mFragmentView.hideSwipe();
+                mFragmentView.hideProgress();
                 Log.e("------>", newsTimeLine.toString());
             }
 

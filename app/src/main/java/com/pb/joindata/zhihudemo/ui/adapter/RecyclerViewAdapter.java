@@ -22,6 +22,7 @@ import java.util.List;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     private List<NewsTimeLine> mList;
     private Context mContext;
+    private View mFooterView;
 
     public RecyclerViewAdapter(Context mContext, List<NewsTimeLine> mList) {
         this.mContext = mContext;
@@ -57,8 +58,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public ViewHolder(View itemView) {
             super(itemView);
             tv_stories_title = (TextView) itemView.findViewById(R.id.tv_stories_title);
-            mCardview= (CardView) itemView.findViewById(R.id.card_stories);
-            iv_stories_img= (ImageView) itemView.findViewById(R.id.iv_stories_img);
+            mCardview = (CardView) itemView.findViewById(R.id.card_stories);
+            iv_stories_img = (ImageView) itemView.findViewById(R.id.iv_stories_img);
         }
     }
 }
