@@ -37,8 +37,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.tv_stories_title.setText(mList.get(position).getStories().get(position).getTitle());
-        String[] images = mList.get(position).getStories().get(position).getImages();
+        holder.tv_stories_title.setText(mList.get(0).getStories().get(position).getTitle());
+        String[] images = mList.get(0).getStories().get(position).getImages();
         Glide.with(mContext).load(images[0]).centerCrop().into(holder.iv_stories_img);
 //        Log.d("------->",mList.get(3).toString());
     }
@@ -46,7 +46,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public int getItemCount() {
-        return mList.size();
+        return mList.get(0).getStories().size();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

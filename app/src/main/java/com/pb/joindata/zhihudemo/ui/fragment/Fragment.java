@@ -5,6 +5,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
+import com.aspsine.swipetoloadlayout.OnRefreshListener;
+import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.pb.joindata.zhihudemo.R;
 import com.pb.joindata.zhihudemo.base.BaseFragment;
 import com.pb.joindata.zhihudemo.bean.zhihu.NewsTimeLine;
@@ -23,6 +26,8 @@ public class Fragment extends BaseFragment<ZhiHuFgPresenter> implements Fragment
     private RecyclerViewAdapter mRecyclerViewAdapter;
     private ZhiHuFgPresenter mPresenter;
     private FragmentContract.FragmentView mFragmentView;
+    private SwipeToLoadLayout mSwipeToLoadLayout;
+
     @Override
     protected ZhiHuFgPresenter InitPresenter() {
         return new ZhiHuFgPresenter(this);
@@ -32,9 +37,23 @@ public class Fragment extends BaseFragment<ZhiHuFgPresenter> implements Fragment
     public void initView(View view) {
         mPresenter=new ZhiHuFgPresenter(this);
         mPresenter.getData();
-        mRecyclerView= (RecyclerView) view.findViewById(R.id.rv_list);
+        mRecyclerView= (RecyclerView) view.findViewById(R.id.swipe_target);
+        mSwipeToLoadLayout= (SwipeToLoadLayout) view.findViewById(R.id.swipeToLoadLayout);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));//设置为listview的布局
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());//设置动画
+        mSwipeToLoadLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mRecyclerViewAdapter.notifyDataSetChanged();
+                mSwipeToLoadLayout.setRefreshing(false);
+            }
+        });
+        mSwipeToLoadLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore() {
+
+            }
+        });
     }
 
     @Override
