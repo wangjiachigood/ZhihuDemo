@@ -1,5 +1,6 @@
 package com.pb.joindata.zhihudemo.ui.fragment;
 
+import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,36 +12,41 @@ import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.pb.joindata.zhihudemo.R;
 import com.pb.joindata.zhihudemo.base.BaseFragment;
 import com.pb.joindata.zhihudemo.bean.zhihu.NewsTimeLine;
+import com.pb.joindata.zhihudemo.ui.Contract.IBasePresenter;
+import com.pb.joindata.zhihudemo.ui.Contract.IbaseView;
 import com.pb.joindata.zhihudemo.ui.adapter.RecyclerViewAdapter;
 import com.pb.joindata.zhihudemo.ui.presenter.ZhiHuFgPresenter;
-import com.pb.joindata.zhihudemo.ui.view.FragmentContract;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by wangjiachi on 2017/8/7.
  */
 
-public class Fragment extends BaseFragment<ZhiHuFgPresenter> implements FragmentContract.FragmentView{
+public class ZhiHuFragment extends BaseFragment<IBasePresenter> implements IbaseView {
     private RecyclerView mRecyclerView;
     private RecyclerViewAdapter mRecyclerViewAdapter;
-    private ZhiHuFgPresenter mPresenter;
-    private FragmentContract.FragmentView mFragmentView;
     private SwipeToLoadLayout mSwipeToLoadLayout;
+    private ArrayList<NewsTimeLine> zhihulist = new ArrayList<>();
+
+    @Override
+    protected void onInflated(View contentView, Bundle savedInstanceState) {
+        initView(contentView);
+    }
 
     @Override
     protected ZhiHuFgPresenter InitPresenter() {
         return new ZhiHuFgPresenter(this);
     }
 
-    @Override
-    public void initView(View view) {
-        mPresenter=new ZhiHuFgPresenter(this);
+    public void initView(View contentView) {
         mPresenter.getData();
-        mRecyclerView= (RecyclerView) view.findViewById(R.id.swipe_target);
-        mSwipeToLoadLayout= (SwipeToLoadLayout) view.findViewById(R.id.swipeToLoadLayout);
+        mRecyclerView = (RecyclerView) contentView.findViewById(R.id.swipe_target);
+        mSwipeToLoadLayout = (SwipeToLoadLayout) contentView.findViewById(R.id.swipeToLoadLayout);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));//设置为listview的布局
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());//设置动画
+        mRecyclerViewAdapter = new RecyclerViewAdapter(getContext(), zhihulist);
+        mRecyclerView.setAdapter(mRecyclerViewAdapter);
         mSwipeToLoadLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -73,13 +79,7 @@ public class Fragment extends BaseFragment<ZhiHuFgPresenter> implements Fragment
 
     @Override
     public void hideSwipe() {
-//        mSwipeRefreshLayout.setRefreshing(false);
-    }
-
-    @Override
-    public void showData(List<NewsTimeLine> mNews) {
-        mRecyclerViewAdapter=new RecyclerViewAdapter(getContext(),mNews);
-        mRecyclerView.setAdapter(mRecyclerViewAdapter);
+        mSwipeToLoadLayout.setRefreshing(false);
     }
 
 

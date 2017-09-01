@@ -1,4 +1,4 @@
-package com.pb.joindata.zhihudemo.ui.view.header;
+package com.pb.joindata.zhihudemo.widget.swipeheader;
 
 import android.content.Context;
 import android.graphics.ColorFilter;

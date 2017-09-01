@@ -7,14 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.pb.joindata.zhihudemo.ui.view.IBasePresenter;
+import com.pb.joindata.zhihudemo.ui.Contract.IBasePresenter;
 
 /**
  * Created by wangjiachi on 2017/8/4.
  */
 
 public abstract class BaseFragment<T extends IBasePresenter> extends Fragment {
-    private T mPresenter;
+    protected T mPresenter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,13 +27,12 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootview = inflater.inflate(createViewLayoutId(), null);
-        initView(rootview);
         return rootview;
     }
 
-    protected abstract T InitPresenter();
+    protected abstract void onInflated(View contentView, Bundle savedInstanceState);
 
-    public abstract void initView(View rootview);
+    protected abstract T InitPresenter();
 
     public abstract int createViewLayoutId();
 

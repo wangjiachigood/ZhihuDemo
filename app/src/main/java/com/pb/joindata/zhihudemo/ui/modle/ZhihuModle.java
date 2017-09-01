@@ -1,11 +1,11 @@
 package com.pb.joindata.zhihudemo.ui.modle;
 
-import com.pb.joindata.zhihudemo.base.APIservice;
-import com.pb.joindata.zhihudemo.base.GlobalField;
+import com.pb.joindata.zhihudemo.http.APIservice;
+import com.pb.joindata.zhihudemo.http.GlobalField;
 import com.pb.joindata.zhihudemo.bean.zhihu.NewsTimeLine;
-import com.pb.joindata.zhihudemo.ui.view.FragmentContract;
+import com.pb.joindata.zhihudemo.ui.Contract.IbaseModel;
 import com.pb.joindata.zhihudemo.ui.view.OnHttpCallBack;
-import com.pb.joindata.zhihudemo.utils.RetrofitUtils;
+import com.pb.joindata.zhihudemo.http.RetrofitUtils;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
@@ -19,7 +19,7 @@ import rx.schedulers.Schedulers;
  * Created by wangjiachi on 2017/8/8.
  */
 
-public class ZhihuModle implements FragmentContract.FragmentModel {
+public class ZhihuModle implements IbaseModel.FragmentModel {
 
     @Override
     public void getMovie(final OnHttpCallBack<NewsTimeLine> callBack) {

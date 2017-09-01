@@ -3,9 +3,10 @@ package com.pb.joindata.zhihudemo.ui.presenter;
 import android.util.Log;
 
 import com.pb.joindata.zhihudemo.bean.zhihu.NewsTimeLine;
+import com.pb.joindata.zhihudemo.ui.Contract.IbaseModel;
+import com.pb.joindata.zhihudemo.ui.Contract.IbaseView;
 import com.pb.joindata.zhihudemo.ui.modle.ZhihuModle;
-import com.pb.joindata.zhihudemo.ui.view.FragmentContract;
-import com.pb.joindata.zhihudemo.ui.view.IBasePresenter;
+import com.pb.joindata.zhihudemo.ui.Contract.IBasePresenter;
 import com.pb.joindata.zhihudemo.ui.view.OnHttpCallBack;
 
 import java.util.ArrayList;
@@ -16,12 +17,12 @@ import java.util.List;
  */
 
 public class ZhiHuFgPresenter implements IBasePresenter {
-    private FragmentContract.FragmentView mFragmentView;
-    private FragmentContract.FragmentModel mFragmentModel;
+    private IbaseView mZhiHuView;
+    private IbaseModel.FragmentModel mFragmentModel;
     private List<NewsTimeLine> mNews = new ArrayList<>();//请求到的电影信息对象集合
 
-    public ZhiHuFgPresenter(FragmentContract.FragmentView mView) {
-        this.mFragmentView = mView;
+    public ZhiHuFgPresenter(IbaseView mView) {
+        this.mZhiHuView = mView;
         mFragmentModel = new ZhihuModle();
     }
 
@@ -31,19 +32,18 @@ public class ZhiHuFgPresenter implements IBasePresenter {
             @Override
             public void onSuccessful(NewsTimeLine newsTimeLine) {
                 mNews.add(newsTimeLine);
-                mFragmentView.showData(mNews);
                 Log.e("------>", newsTimeLine.toString());
             }
 
             @Override
             public void onFaild(String errorMsg) {
+                Log.e("------>","1111");
             }
         });
     }
 
     @Override
     public void getMoreData() {
-        getData();
     }
 
 }

@@ -1,4 +1,4 @@
-package com.pb.joindata.zhihudemo.ui.view.footer;
+package com.pb.joindata.zhihudemo.widget.loadmorefooter;
 
 import android.content.Context;
 import android.util.AttributeSet;

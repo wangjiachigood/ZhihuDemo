@@ -1,4 +1,4 @@
-package com.pb.joindata.zhihudemo.base;
+package com.pb.joindata.zhihudemo.http;
 
 import com.pb.joindata.zhihudemo.bean.gank.GankData;
 import com.pb.joindata.zhihudemo.bean.gank.Meizhi;

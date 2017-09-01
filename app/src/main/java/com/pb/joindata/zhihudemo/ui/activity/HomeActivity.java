@@ -10,9 +10,9 @@ import android.support.v7.widget.Toolbar;
 import com.pb.joindata.zhihudemo.R;
 import com.pb.joindata.zhihudemo.base.BaseActivity;
 import com.pb.joindata.zhihudemo.ui.adapter.ViewPageAdapter;
-import com.pb.joindata.zhihudemo.ui.fragment.Fragment;
-import com.pb.joindata.zhihudemo.ui.fragment.FragmentThree;
-import com.pb.joindata.zhihudemo.ui.fragment.FragmentTwo;
+import com.pb.joindata.zhihudemo.ui.fragment.ZhiHuFragment;
+import com.pb.joindata.zhihudemo.ui.fragment.MoreFragment;
+import com.pb.joindata.zhihudemo.ui.fragment.GankFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,9 +40,9 @@ public class HomeActivity extends BaseActivity{
     @Override
     protected void initData() {
         mToolbar.setTitle("知乎");
-        mList.add(new Fragment());
-        mList.add(new FragmentTwo());
-        mList.add(new FragmentThree());
+        mList.add(new ZhiHuFragment());
+        mList.add(new GankFragment());
+        mList.add(new MoreFragment());
         mViewpage.setOffscreenPageLimit(3);
         mViewpage.setAdapter(new ViewPageAdapter(getSupportFragmentManager(),mList,"main_view_pager"));
         mTablayout.setupWithViewPager(mViewpage);

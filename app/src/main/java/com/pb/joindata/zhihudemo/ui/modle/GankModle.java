@@ -3,12 +3,12 @@ package com.pb.joindata.zhihudemo.ui.modle;
 
 import android.util.Log;
 
-import com.pb.joindata.zhihudemo.base.APIservice;
-import com.pb.joindata.zhihudemo.base.GlobalField;
+import com.pb.joindata.zhihudemo.http.APIservice;
+import com.pb.joindata.zhihudemo.http.GlobalField;
 import com.pb.joindata.zhihudemo.bean.gank.Meizhi;
-import com.pb.joindata.zhihudemo.ui.view.FragmentContract;
+import com.pb.joindata.zhihudemo.ui.Contract.IbaseModel;
 import com.pb.joindata.zhihudemo.ui.view.OnHttpCallBack;
-import com.pb.joindata.zhihudemo.utils.RetrofitUtils;
+import com.pb.joindata.zhihudemo.http.RetrofitUtils;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
@@ -22,7 +22,7 @@ import rx.schedulers.Schedulers;
  * Created by wangjiachi on 2017/8/8.
  */
 
-public class GankModle implements FragmentContract.GankFragmentModel {
+public class GankModle implements IbaseModel.GankFragmentModel {
 
 
     @Override

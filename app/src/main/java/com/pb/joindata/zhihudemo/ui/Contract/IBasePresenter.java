@@ -1,4 +1,4 @@
-package com.pb.joindata.zhihudemo.ui.view;
+package com.pb.joindata.zhihudemo.ui.Contract;
 
 /**
  * Created by wangjiachi on 2017/8/8.

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.pb.joindata.zhihudemo.ui.view.footer.ClassicLoadMoreFooterView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.pb.joindata.zhihudemo.widget.loadmorefooter.ClassicLoadMoreFooterView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -34,4 +34,4 @@
             android:text="LoadMore"
             android:textColor="?attr/colorPrimary" />
     </RelativeLayout>
-</com.pb.joindata.zhihudemo.ui.view.footer.ClassicLoadMoreFooterView>
+</com.pb.joindata.zhihudemo.widget.loadmorefooter.ClassicLoadMoreFooterView>

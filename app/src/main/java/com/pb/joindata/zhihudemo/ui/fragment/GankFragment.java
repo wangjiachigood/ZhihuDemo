@@ -1,5 +1,6 @@
 package com.pb.joindata.zhihudemo.ui.fragment;
 
+import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -7,21 +8,27 @@ import android.view.View;
 
 import com.pb.joindata.zhihudemo.R;
 import com.pb.joindata.zhihudemo.base.BaseFragment;
+import com.pb.joindata.zhihudemo.ui.Contract.IbaseView;
 import com.pb.joindata.zhihudemo.ui.presenter.GankPresenter;
 
 /**
  * Created by wangjiachi on 2017/8/7.
  */
 
-public class FragmentTwo extends BaseFragment<GankPresenter> {
+public class GankFragment extends BaseFragment<GankPresenter> implements IbaseView {
     private RecyclerView mRecyclerView;
     private GankPresenter mGankPresenter;
+
+    @Override
+    protected void onInflated(View contentView, Bundle savedInstanceState) {
+        initView(contentView);
+    }
+
     @Override
     protected GankPresenter InitPresenter() {
         return new GankPresenter(getContext());
     }
 
-    @Override
     public void initView(View view) {
         mGankPresenter=new GankPresenter(getContext());
         mGankPresenter.getData();
@@ -33,6 +40,21 @@ public class FragmentTwo extends BaseFragment<GankPresenter> {
     @Override
     public int createViewLayoutId() {
         return R.layout.fragment_two;
+    }
+
+    @Override
+    public void showProgress() {
+
+    }
+
+    @Override
+    public void hideProgress() {
+
+    }
+
+    @Override
+    public void hideSwipe() {
+
     }
 
 }
