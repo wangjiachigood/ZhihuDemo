@@ -32,21 +32,16 @@ public class ZhiHuFragment extends BaseFragment<IBasePresenter> implements IBase
     @Override
     protected void onInflated(View contentView, Bundle savedInstanceState) {
         initView(contentView);
+        initListener();
+//        mSwipeToLoadLayout.setRefreshing(true);
+//        mPresenter.getData();
     }
-
     @Override
     protected ZhiHuFgPresenter InitPresenter() {
         return new ZhiHuFgPresenter(this);
     }
 
-    public void initView(View contentView) {
-        mPresenter.getData();
-        mRecyclerView = (RecyclerView) contentView.findViewById(R.id.swipe_target);
-        mSwipeToLoadLayout = (SwipeToLoadLayout) contentView.findViewById(R.id.swipeToLoadLayout);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));//设置为listview的布局
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());//设置动画
-        mRecyclerViewAdapter = new RecyclerViewAdapter(getContext(), zhihulist);
-        mRecyclerView.setAdapter(mRecyclerViewAdapter);
+    private void initListener() {
         mSwipeToLoadLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -57,9 +52,19 @@ public class ZhiHuFragment extends BaseFragment<IBasePresenter> implements IBase
         mSwipeToLoadLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
-
             }
         });
+    }
+
+
+    public void initView(View contentView) {
+        mPresenter.getData();
+        mRecyclerView = (RecyclerView) contentView.findViewById(R.id.swipe_target);
+        mSwipeToLoadLayout = (SwipeToLoadLayout) contentView.findViewById(R.id.swipeToLoadLayout);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));//设置为listview的布局
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());//设置动画
+        mRecyclerViewAdapter = new RecyclerViewAdapter(getContext(), zhihulist);
+        mRecyclerView.setAdapter(mRecyclerViewAdapter);
     }
 
     @Override
@@ -67,14 +72,11 @@ public class ZhiHuFragment extends BaseFragment<IBasePresenter> implements IBase
         return R.layout.fragment_one;
     }
 
-    @Override
-    public void showProgress() {
-
-    }
 
     @Override
-    public void hideProgress() {
-
+    public void refreshList(NewsTimeLine mList) {
+        zhihulist.add(mList);
+        mRecyclerViewAdapter.notifyDataSetChanged();
     }
 
     @Override

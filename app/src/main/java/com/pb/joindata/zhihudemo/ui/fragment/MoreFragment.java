@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.pb.joindata.zhihudemo.R;
 import com.pb.joindata.zhihudemo.base.BaseFragment;
+import com.pb.joindata.zhihudemo.bean.zhihu.NewsTimeLine;
 import com.pb.joindata.zhihudemo.ui.Contract.IBaseView;
 import com.pb.joindata.zhihudemo.ui.presenter.MorePresenter;
 
@@ -43,13 +44,9 @@ public class MoreFragment extends BaseFragment<MorePresenter> implements IBaseVi
         return R.layout.fragment_three;
     }
 
-    @Override
-    public void showProgress() {
-
-    }
 
     @Override
-    public void hideProgress() {
+    public void refreshList(NewsTimeLine mList) {
 
     }
 

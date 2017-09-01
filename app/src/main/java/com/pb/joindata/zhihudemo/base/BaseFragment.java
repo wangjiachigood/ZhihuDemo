@@ -15,20 +15,29 @@ import com.pb.joindata.zhihudemo.ui.Contract.IBasePresenter;
 
 public abstract class BaseFragment<T extends IBasePresenter> extends Fragment {
     protected T mPresenter;
+    protected View mContentView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPresenter = InitPresenter();
     }
-
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootview = inflater.inflate(createViewLayoutId(), null);
-        return rootview;
+        mContentView = inflater.inflate(createViewLayoutId(), null);
+        mPresenter = InitPresenter();
+        return mContentView;
     }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (mContentView != null) {
+            onInflated(mContentView, savedInstanceState);
+        }
+    }
+
 
     protected abstract void onInflated(View contentView, Bundle savedInstanceState);
 

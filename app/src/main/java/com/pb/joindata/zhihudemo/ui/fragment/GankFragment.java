@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.pb.joindata.zhihudemo.R;
 import com.pb.joindata.zhihudemo.base.BaseFragment;
+import com.pb.joindata.zhihudemo.bean.zhihu.NewsTimeLine;
 import com.pb.joindata.zhihudemo.ui.Contract.IBaseView;
 import com.pb.joindata.zhihudemo.ui.presenter.GankPresenter;
 
@@ -30,9 +31,9 @@ public class GankFragment extends BaseFragment<GankPresenter> implements IBaseVi
     }
 
     public void initView(View view) {
-        mGankPresenter=new GankPresenter(getContext());
+        mGankPresenter = new GankPresenter(getContext());
         mGankPresenter.getData();
-        mRecyclerView= (RecyclerView) view.findViewById(R.id.gank_list);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.gank_list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));//设置为listview的布局
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());//设置动画
     }
@@ -42,13 +43,9 @@ public class GankFragment extends BaseFragment<GankPresenter> implements IBaseVi
         return R.layout.fragment_two;
     }
 
-    @Override
-    public void showProgress() {
-
-    }
 
     @Override
-    public void hideProgress() {
+    public void refreshList(NewsTimeLine mList) {
 
     }
 
