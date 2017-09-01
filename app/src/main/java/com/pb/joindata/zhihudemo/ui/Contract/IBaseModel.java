@@ -3,13 +3,12 @@ package com.pb.joindata.zhihudemo.ui.Contract;
 import com.pb.joindata.zhihudemo.bean.gank.Meizhi;
 import com.pb.joindata.zhihudemo.bean.more.DailyTimeLine;
 import com.pb.joindata.zhihudemo.bean.zhihu.NewsTimeLine;
-import com.pb.joindata.zhihudemo.ui.view.OnHttpCallBack;
 
 /**
  * Created by wangjiachi on 2017/8/31.
  */
 
-public interface IbaseModel {
+public interface IBaseModel {
 
     interface FragmentModel {
         void getMovie(OnHttpCallBack<NewsTimeLine> callBack);//获取知乎信息

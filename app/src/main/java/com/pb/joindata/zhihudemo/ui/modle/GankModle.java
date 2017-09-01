@@ -6,8 +6,8 @@ import android.util.Log;
 import com.pb.joindata.zhihudemo.http.APIservice;
 import com.pb.joindata.zhihudemo.http.GlobalField;
 import com.pb.joindata.zhihudemo.bean.gank.Meizhi;
-import com.pb.joindata.zhihudemo.ui.Contract.IbaseModel;
-import com.pb.joindata.zhihudemo.ui.view.OnHttpCallBack;
+import com.pb.joindata.zhihudemo.ui.Contract.IBaseModel;
+import com.pb.joindata.zhihudemo.ui.Contract.OnHttpCallBack;
 import com.pb.joindata.zhihudemo.http.RetrofitUtils;
 
 import java.net.ConnectException;
@@ -22,7 +22,7 @@ import rx.schedulers.Schedulers;
  * Created by wangjiachi on 2017/8/8.
  */
 
-public class GankModle implements IbaseModel.GankFragmentModel {
+public class GankModle implements IBaseModel.GankFragmentModel {
 
 
     @Override

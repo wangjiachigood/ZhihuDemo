@@ -5,8 +5,8 @@ import android.util.Log;
 import com.pb.joindata.zhihudemo.http.APIservice;
 import com.pb.joindata.zhihudemo.http.GlobalField;
 import com.pb.joindata.zhihudemo.bean.more.DailyTimeLine;
-import com.pb.joindata.zhihudemo.ui.Contract.IbaseModel;
-import com.pb.joindata.zhihudemo.ui.view.OnHttpCallBack;
+import com.pb.joindata.zhihudemo.ui.Contract.IBaseModel;
+import com.pb.joindata.zhihudemo.ui.Contract.OnHttpCallBack;
 import com.pb.joindata.zhihudemo.http.RetrofitUtils;
 
 import java.net.ConnectException;
@@ -21,7 +21,7 @@ import rx.schedulers.Schedulers;
  * Created by wangjiachi on 2017/8/9.
  */
 
-public class MoreModle implements IbaseModel.MoreFragmentModel {
+public class MoreModle implements IBaseModel.MoreFragmentModel {
     @Override
     public void getMore(String num, final OnHttpCallBack<DailyTimeLine> callBack) {
         RetrofitUtils.newInstence(GlobalField.DAILY_BASE_URL)

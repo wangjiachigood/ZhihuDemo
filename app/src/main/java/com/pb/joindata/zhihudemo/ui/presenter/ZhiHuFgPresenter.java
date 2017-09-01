@@ -3,11 +3,11 @@ package com.pb.joindata.zhihudemo.ui.presenter;
 import android.util.Log;
 
 import com.pb.joindata.zhihudemo.bean.zhihu.NewsTimeLine;
-import com.pb.joindata.zhihudemo.ui.Contract.IbaseModel;
-import com.pb.joindata.zhihudemo.ui.Contract.IbaseView;
+import com.pb.joindata.zhihudemo.ui.Contract.IBaseModel;
+import com.pb.joindata.zhihudemo.ui.Contract.IBaseView;
 import com.pb.joindata.zhihudemo.ui.modle.ZhihuModle;
 import com.pb.joindata.zhihudemo.ui.Contract.IBasePresenter;
-import com.pb.joindata.zhihudemo.ui.view.OnHttpCallBack;
+import com.pb.joindata.zhihudemo.ui.Contract.OnHttpCallBack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +17,11 @@ import java.util.List;
  */
 
 public class ZhiHuFgPresenter implements IBasePresenter {
-    private IbaseView mZhiHuView;
-    private IbaseModel.FragmentModel mFragmentModel;
+    private IBaseView mZhiHuView;
+    private IBaseModel.FragmentModel mFragmentModel;
     private List<NewsTimeLine> mNews = new ArrayList<>();//请求到的电影信息对象集合
 
-    public ZhiHuFgPresenter(IbaseView mView) {
+    public ZhiHuFgPresenter(IBaseView mView) {
         this.mZhiHuView = mView;
         mFragmentModel = new ZhihuModle();
     }

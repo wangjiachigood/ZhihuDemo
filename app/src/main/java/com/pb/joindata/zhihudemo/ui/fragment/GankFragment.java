@@ -8,14 +8,14 @@ import android.view.View;
 
 import com.pb.joindata.zhihudemo.R;
 import com.pb.joindata.zhihudemo.base.BaseFragment;
-import com.pb.joindata.zhihudemo.ui.Contract.IbaseView;
+import com.pb.joindata.zhihudemo.ui.Contract.IBaseView;
 import com.pb.joindata.zhihudemo.ui.presenter.GankPresenter;
 
 /**
  * Created by wangjiachi on 2017/8/7.
  */
 
-public class GankFragment extends BaseFragment<GankPresenter> implements IbaseView {
+public class GankFragment extends BaseFragment<GankPresenter> implements IBaseView {
     private RecyclerView mRecyclerView;
     private GankPresenter mGankPresenter;
 

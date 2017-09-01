@@ -4,10 +4,10 @@ import android.content.Context;
 import android.util.Log;
 
 import com.pb.joindata.zhihudemo.bean.gank.Meizhi;
-import com.pb.joindata.zhihudemo.ui.Contract.IbaseModel;
+import com.pb.joindata.zhihudemo.ui.Contract.IBaseModel;
 import com.pb.joindata.zhihudemo.ui.modle.GankModle;
 import com.pb.joindata.zhihudemo.ui.Contract.IBasePresenter;
-import com.pb.joindata.zhihudemo.ui.view.OnHttpCallBack;
+import com.pb.joindata.zhihudemo.ui.Contract.OnHttpCallBack;
 
 /**
  * Created by wangjiachi on 2017/8/8.
@@ -15,7 +15,7 @@ import com.pb.joindata.zhihudemo.ui.view.OnHttpCallBack;
 
 public class GankPresenter implements IBasePresenter {
     private Context mContext;
-    private IbaseModel.GankFragmentModel mGankModel;
+    private IBaseModel.GankFragmentModel mGankModel;
     private int page=1;
 
     public GankPresenter(Context mContext) {

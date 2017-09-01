@@ -4,10 +4,10 @@ import android.content.Context;
 import android.util.Log;
 
 import com.pb.joindata.zhihudemo.bean.more.DailyTimeLine;
-import com.pb.joindata.zhihudemo.ui.Contract.IbaseModel;
+import com.pb.joindata.zhihudemo.ui.Contract.IBaseModel;
 import com.pb.joindata.zhihudemo.ui.modle.MoreModle;
 import com.pb.joindata.zhihudemo.ui.Contract.IBasePresenter;
-import com.pb.joindata.zhihudemo.ui.view.OnHttpCallBack;
+import com.pb.joindata.zhihudemo.ui.Contract.OnHttpCallBack;
 
 /**
  * Created by wangjiachi on 2017/8/9.
@@ -15,7 +15,7 @@ import com.pb.joindata.zhihudemo.ui.view.OnHttpCallBack;
 
 public class MorePresenter implements IBasePresenter {
     private Context mContext;
-    private IbaseModel.MoreFragmentModel moreFragmentModel;
+    private IBaseModel.MoreFragmentModel moreFragmentModel;
     public String num="0";
 
     public MorePresenter(Context context) {

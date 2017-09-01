@@ -1,4 +1,4 @@
-package com.pb.joindata.zhihudemo.ui.view;
+package com.pb.joindata.zhihudemo.ui.Contract;
 
 /**
  * 公共的请求回调监听器

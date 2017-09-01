@@ -13,7 +13,7 @@ import com.pb.joindata.zhihudemo.R;
 import com.pb.joindata.zhihudemo.base.BaseFragment;
 import com.pb.joindata.zhihudemo.bean.zhihu.NewsTimeLine;
 import com.pb.joindata.zhihudemo.ui.Contract.IBasePresenter;
-import com.pb.joindata.zhihudemo.ui.Contract.IbaseView;
+import com.pb.joindata.zhihudemo.ui.Contract.IBaseView;
 import com.pb.joindata.zhihudemo.ui.adapter.RecyclerViewAdapter;
 import com.pb.joindata.zhihudemo.ui.presenter.ZhiHuFgPresenter;
 
@@ -23,7 +23,7 @@ import java.util.ArrayList;
  * Created by wangjiachi on 2017/8/7.
  */
 
-public class ZhiHuFragment extends BaseFragment<IBasePresenter> implements IbaseView {
+public class ZhiHuFragment extends BaseFragment<IBasePresenter> implements IBaseView {
     private RecyclerView mRecyclerView;
     private RecyclerViewAdapter mRecyclerViewAdapter;
     private SwipeToLoadLayout mSwipeToLoadLayout;
