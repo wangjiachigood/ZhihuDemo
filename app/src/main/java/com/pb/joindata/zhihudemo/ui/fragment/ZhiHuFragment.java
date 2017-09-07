@@ -27,7 +27,7 @@ public class ZhiHuFragment extends BaseFragment<IBasePresenter> implements IBase
     private RecyclerView mRecyclerView;
     private RecyclerViewAdapter mRecyclerViewAdapter;
     private SwipeToLoadLayout mSwipeToLoadLayout;
-    private NewsTimeLine zhihulist = null;
+    private NewsTimeLine zhihulist;
 
     @Override
     protected void onInflated(View contentView, Bundle savedInstanceState) {
@@ -66,7 +66,6 @@ public class ZhiHuFragment extends BaseFragment<IBasePresenter> implements IBase
 
     private void initData() {
         mSwipeToLoadLayout.setRefreshing(true);
-        mPresenter.getData();
         mRecyclerViewAdapter = new RecyclerViewAdapter(getContext(), zhihulist);
         mRecyclerView.setAdapter(mRecyclerViewAdapter);
     }
