@@ -18,6 +18,14 @@ public class NewsTimeLine implements Serializable {
         return date;
     }
 
+    public void setStories(List<Stories> stories) {
+        this.stories = stories;
+    }
+
+    public void setTop_stories(List<TopStories> top_stories) {
+        this.top_stories = top_stories;
+    }
+
     public List<Stories> getStories() {
         return stories;
     }
