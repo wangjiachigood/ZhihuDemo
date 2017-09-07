@@ -53,12 +53,7 @@ public class ZhiHuFragment extends BaseFragment<IBasePresenter> implements IBase
         mSwipeToLoadLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
-                mSwipeToLoadLayout.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mPresenter.getMoreData();
-                    }
-                }, 0);
+                mPresenter.getMoreData();
             }
         });
     }
@@ -93,7 +88,8 @@ public class ZhiHuFragment extends BaseFragment<IBasePresenter> implements IBase
 
     @Override
     public void loadMoreList(NewsTimeLine mList) {
-        zhihulist.add(mList);
+        zhihulist.get(0).getStories().addAll(mList.getStories());
+        zhihulist.get(0).getTop_stories().addAll(mList.getTop_stories());
         mRecyclerViewAdapter.notifyDataSetChanged();
         mSwipeToLoadLayout.setRefreshing(false);
     }
