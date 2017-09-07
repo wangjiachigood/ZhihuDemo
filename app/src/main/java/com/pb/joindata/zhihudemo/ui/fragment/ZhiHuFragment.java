@@ -47,8 +47,7 @@ public class ZhiHuFragment extends BaseFragment<IBasePresenter> implements IBase
         mSwipeToLoadLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh() {
-                mRecyclerViewAdapter.notifyDataSetChanged();
-                mSwipeToLoadLayout.setRefreshing(false);
+                mPresenter.getData();
             }
         });
         mSwipeToLoadLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
@@ -57,11 +56,9 @@ public class ZhiHuFragment extends BaseFragment<IBasePresenter> implements IBase
                 mSwipeToLoadLayout.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        mRecyclerViewAdapter.notifyDataSetChanged();
-                        mSwipeToLoadLayout.setLoadingMore(false);
                         mPresenter.getMoreData();
                     }
-                },1000);
+                }, 0);
             }
         });
     }
@@ -77,7 +74,6 @@ public class ZhiHuFragment extends BaseFragment<IBasePresenter> implements IBase
     private void initData() {
         mSwipeToLoadLayout.setRefreshing(true);
         mPresenter.getData();
-        mPresenter.getMoreData();
         mRecyclerViewAdapter = new RecyclerViewAdapter(getContext(), zhihulist);
         mRecyclerView.setAdapter(mRecyclerViewAdapter);
     }
@@ -90,12 +86,16 @@ public class ZhiHuFragment extends BaseFragment<IBasePresenter> implements IBase
 
     @Override
     public void refreshList(NewsTimeLine mList) {
+        mRecyclerViewAdapter.notifyDataSetChanged();
         zhihulist.add(mList);
+        mSwipeToLoadLayout.setRefreshing(false);
     }
 
     @Override
     public void loadMoreList(NewsTimeLine mList) {
         zhihulist.add(mList);
+        mRecyclerViewAdapter.notifyDataSetChanged();
+        mSwipeToLoadLayout.setRefreshing(false);
     }
 
 
