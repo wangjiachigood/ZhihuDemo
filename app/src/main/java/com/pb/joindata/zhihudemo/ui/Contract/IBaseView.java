@@ -7,8 +7,9 @@ import com.pb.joindata.zhihudemo.bean.zhihu.NewsTimeLine;
  */
 
 public interface IBaseView {
-    void refreshList(NewsTimeLine mList);
-
-    void hideSwipe();//隐藏刷新
+    interface ZhihuView{
+        void refreshList(NewsTimeLine mList);
+        void loadMoreList(NewsTimeLine mList);
+    }
 
 }

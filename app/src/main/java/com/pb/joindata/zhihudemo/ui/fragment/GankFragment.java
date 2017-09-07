@@ -8,15 +8,13 @@ import android.view.View;
 
 import com.pb.joindata.zhihudemo.R;
 import com.pb.joindata.zhihudemo.base.BaseFragment;
-import com.pb.joindata.zhihudemo.bean.zhihu.NewsTimeLine;
-import com.pb.joindata.zhihudemo.ui.Contract.IBaseView;
 import com.pb.joindata.zhihudemo.ui.presenter.GankPresenter;
 
 /**
  * Created by wangjiachi on 2017/8/7.
  */
 
-public class GankFragment extends BaseFragment<GankPresenter> implements IBaseView {
+public class GankFragment extends BaseFragment<GankPresenter> {
     private RecyclerView mRecyclerView;
     private GankPresenter mGankPresenter;
 
@@ -43,15 +41,5 @@ public class GankFragment extends BaseFragment<GankPresenter> implements IBaseVi
         return R.layout.fragment_two;
     }
 
-
-    @Override
-    public void refreshList(NewsTimeLine mList) {
-
-    }
-
-    @Override
-    public void hideSwipe() {
-
-    }
 
 }

@@ -10,14 +10,18 @@ import retrofit2.http.Path;
 import rx.Observable;
 
 
-
 /**
  * Created by wangjiachi on 2017/8/8.
  */
 
 public interface APIservice {
+    //知乎最新几条消息
     @GET("news/latest")
     Observable<NewsTimeLine> getLatestNews();
+
+    //加载更多消息
+    @GET("news/before/{time}")
+    Observable<NewsTimeLine> getBeforetNews(@Path("time") String time);
 
     @GET("data/福利/10/{page}")
     Observable<Meizhi> getMeizhiData(@Path("page") int page);

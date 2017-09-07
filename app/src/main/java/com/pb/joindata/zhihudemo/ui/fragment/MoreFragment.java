@@ -8,15 +8,13 @@ import android.view.View;
 
 import com.pb.joindata.zhihudemo.R;
 import com.pb.joindata.zhihudemo.base.BaseFragment;
-import com.pb.joindata.zhihudemo.bean.zhihu.NewsTimeLine;
-import com.pb.joindata.zhihudemo.ui.Contract.IBaseView;
 import com.pb.joindata.zhihudemo.ui.presenter.MorePresenter;
 
 /**
  * Created by wangjiachi on 2017/8/7.
  */
 
-public class MoreFragment extends BaseFragment<MorePresenter> implements IBaseView {
+public class MoreFragment extends BaseFragment<MorePresenter> {
     private RecyclerView mRecycleview;
     private MorePresenter mMorepresenter;
 
@@ -45,13 +43,6 @@ public class MoreFragment extends BaseFragment<MorePresenter> implements IBaseVi
     }
 
 
-    @Override
-    public void refreshList(NewsTimeLine mList) {
 
-    }
 
-    @Override
-    public void hideSwipe() {
-
-    }
 }

@@ -19,11 +19,13 @@ import com.pb.joindata.zhihudemo.ui.presenter.ZhiHuFgPresenter;
 
 import java.util.ArrayList;
 
+import static com.pb.joindata.zhihudemo.R.id.swipeToLoadLayout;
+
 /**
  * Created by wangjiachi on 2017/8/7.
  */
 
-public class ZhiHuFragment extends BaseFragment<IBasePresenter> implements IBaseView {
+public class ZhiHuFragment extends BaseFragment<IBasePresenter> implements IBaseView.ZhihuView {
     private RecyclerView mRecyclerView;
     private RecyclerViewAdapter mRecyclerViewAdapter;
     private SwipeToLoadLayout mSwipeToLoadLayout;
@@ -32,10 +34,10 @@ public class ZhiHuFragment extends BaseFragment<IBasePresenter> implements IBase
     @Override
     protected void onInflated(View contentView, Bundle savedInstanceState) {
         initView(contentView);
+        initData();
         initListener();
-//        mSwipeToLoadLayout.setRefreshing(true);
-//        mPresenter.getData();
     }
+
     @Override
     protected ZhiHuFgPresenter InitPresenter() {
         return new ZhiHuFgPresenter(this);
@@ -52,17 +54,30 @@ public class ZhiHuFragment extends BaseFragment<IBasePresenter> implements IBase
         mSwipeToLoadLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
+                mSwipeToLoadLayout.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mRecyclerViewAdapter.notifyDataSetChanged();
+                        mSwipeToLoadLayout.setLoadingMore(false);
+                        mPresenter.getMoreData();
+                    }
+                },1000);
             }
         });
     }
 
 
     public void initView(View contentView) {
-        mPresenter.getData();
         mRecyclerView = (RecyclerView) contentView.findViewById(R.id.swipe_target);
-        mSwipeToLoadLayout = (SwipeToLoadLayout) contentView.findViewById(R.id.swipeToLoadLayout);
+        mSwipeToLoadLayout = (SwipeToLoadLayout) contentView.findViewById(swipeToLoadLayout);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));//设置为listview的布局
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());//设置动画
+    }
+
+    private void initData() {
+        mSwipeToLoadLayout.setRefreshing(true);
+        mPresenter.getData();
+        mPresenter.getMoreData();
         mRecyclerViewAdapter = new RecyclerViewAdapter(getContext(), zhihulist);
         mRecyclerView.setAdapter(mRecyclerViewAdapter);
     }
@@ -76,12 +91,11 @@ public class ZhiHuFragment extends BaseFragment<IBasePresenter> implements IBase
     @Override
     public void refreshList(NewsTimeLine mList) {
         zhihulist.add(mList);
-        mRecyclerViewAdapter.notifyDataSetChanged();
     }
 
     @Override
-    public void hideSwipe() {
-        mSwipeToLoadLayout.setRefreshing(false);
+    public void loadMoreList(NewsTimeLine mList) {
+        zhihulist.add(mList);
     }
 
 

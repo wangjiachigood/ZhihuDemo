@@ -13,6 +13,9 @@ public interface IBaseModel {
     interface FragmentModel {
         void getMovie(OnHttpCallBack<NewsTimeLine> callBack);//获取知乎信息
 
+        void loadMoreNews(String time,OnHttpCallBack<NewsTimeLine> callBack);//加载更多信息
+
+
     }
 
     interface GankFragmentModel {

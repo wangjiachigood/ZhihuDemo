@@ -3,7 +3,6 @@ package com.pb.joindata.zhihudemo.ui.adapter;
 import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -12,6 +11,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.pb.joindata.zhihudemo.R;
 import com.pb.joindata.zhihudemo.bean.zhihu.NewsTimeLine;
+import com.pb.joindata.zhihudemo.bean.zhihu.TopStories;
+import com.pb.joindata.zhihudemo.ui.activity.ZhiHuWebActivity;
+import com.pb.joindata.zhihudemo.widget.TopStoriesViewPager;
 
 import java.util.List;
 
@@ -19,9 +21,10 @@ import java.util.List;
  * Created by wangjiachi on 2017/8/7.
  */
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<NewsTimeLine> mList;
     private Context mContext;
+    private static final int TYPE_TOP = -1;
 
     public RecyclerViewAdapter(Context mContext, List<NewsTimeLine> mList) {
         this.mContext = mContext;
@@ -29,36 +32,80 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_zhihu_stories, parent, false);
-        ViewHolder vh = new ViewHolder(view);
-        return vh;
+    public int getItemViewType(int position) {
+        if (mList.get(0).getTop_stories() != null) {
+            if (position == 0) {
+                return TYPE_TOP;
+            } else {
+                return position;
+            }
+
+        } else {
+            return position;
+        }
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.tv_stories_title.setText(mList.get(position).getStories().get(position).getTitle());
-        String[] images = mList.get(position).getStories().get(position).getImages();
-        Glide.with(mContext).load(images[0]).centerCrop().into(holder.iv_stories_img);
-//        Log.d("------->",mList.get(3).toString());
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if (viewType == TYPE_TOP) {
+            View view = View.inflate(parent.getContext(), R.layout.item_zhihu_top_stories, null);
+            return new ViewPagerViewHolder(view);
+        } else {
+            View view = View.inflate(parent.getContext(), R.layout.item_zhihu_stories, null);
+            return new ItemViewHolder(view);
+        }
     }
 
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if (holder instanceof ItemViewHolder) {
+            ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
+            itemViewHolder.tv_stories_title.setText(mList.get(0).getStories().get(position).getTitle());
+            String[] images = mList.get(0).getStories().get(position).getImages();
+            Glide.with(mContext).load(images[0]).centerCrop().into(itemViewHolder.iv_stories_img);
+        } else if (holder instanceof ViewPagerViewHolder) {
+            ViewPagerViewHolder viewPagerViewHolder = (ViewPagerViewHolder) holder;
+            viewPagerViewHolder.tv_top_title.setText(mList.get(0).getTop_stories().get(position).getTitle());
+            viewPagerViewHolder.vp_top_stories.init(mList.get(0).getTop_stories(), viewPagerViewHolder.tv_top_title, new TopStoriesViewPager.ViewPagerClickListenner() {
+                @Override
+                public void onClick(TopStories item) {
+                    ZhiHuWebActivity.launch(mContext);
+                }
+            });
+
+        }
+    }
 
     @Override
     public int getItemCount() {
-        return mList.size();
+        if (mList.size() != 0) {
+            return mList.get(0).getStories().size();
+        } else {
+            return 0;
+        }
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    static class ItemViewHolder extends RecyclerView.ViewHolder {
         public TextView tv_stories_title;
         public CardView mCardview;
         public ImageView iv_stories_img;
 
-        public ViewHolder(View itemView) {
+        public ItemViewHolder(View itemView) {
             super(itemView);
             tv_stories_title = (TextView) itemView.findViewById(R.id.tv_stories_title);
-            mCardview= (CardView) itemView.findViewById(R.id.card_stories);
-            iv_stories_img= (ImageView) itemView.findViewById(R.id.iv_stories_img);
+            mCardview = (CardView) itemView.findViewById(R.id.card_stories);
+            iv_stories_img = (ImageView) itemView.findViewById(R.id.iv_stories_img);
+        }
+    }
+
+    static class ViewPagerViewHolder extends RecyclerView.ViewHolder {
+        private TopStoriesViewPager vp_top_stories;
+        TextView tv_top_title;
+
+        public ViewPagerViewHolder(View itemView) {
+            super(itemView);
+            vp_top_stories = (TopStoriesViewPager) itemView.findViewById(R.id.vp_top_stories);
+            tv_top_title = (TextView) itemView.findViewById(R.id.tv_top_title);
         }
     }
 }
