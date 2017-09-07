@@ -17,8 +17,6 @@ import com.pb.joindata.zhihudemo.ui.Contract.IBaseView;
 import com.pb.joindata.zhihudemo.ui.adapter.RecyclerViewAdapter;
 import com.pb.joindata.zhihudemo.ui.presenter.ZhiHuFgPresenter;
 
-import java.util.ArrayList;
-
 import static com.pb.joindata.zhihudemo.R.id.swipeToLoadLayout;
 
 /**
@@ -29,7 +27,7 @@ public class ZhiHuFragment extends BaseFragment<IBasePresenter> implements IBase
     private RecyclerView mRecyclerView;
     private RecyclerViewAdapter mRecyclerViewAdapter;
     private SwipeToLoadLayout mSwipeToLoadLayout;
-    private ArrayList<NewsTimeLine> zhihulist = new ArrayList<>();
+    private NewsTimeLine zhihulist = null;
 
     @Override
     protected void onInflated(View contentView, Bundle savedInstanceState) {
@@ -81,17 +79,17 @@ public class ZhiHuFragment extends BaseFragment<IBasePresenter> implements IBase
 
     @Override
     public void refreshList(NewsTimeLine mList) {
-        mRecyclerViewAdapter.notifyDataSetChanged();
-        zhihulist.add(mList);
         mSwipeToLoadLayout.setRefreshing(false);
+        zhihulist.getStories().addAll(mList.getStories());
+        zhihulist.getTop_stories().addAll(mList.getTop_stories());
+        mRecyclerViewAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void loadMoreList(NewsTimeLine mList) {
-        zhihulist.get(0).getStories().addAll(mList.getStories());
-        zhihulist.get(0).getTop_stories().addAll(mList.getTop_stories());
+        mSwipeToLoadLayout.setLoadingMore(false);
+        zhihulist.getStories().addAll(mList.getStories());
         mRecyclerViewAdapter.notifyDataSetChanged();
-        mSwipeToLoadLayout.setRefreshing(false);
     }
 
 
