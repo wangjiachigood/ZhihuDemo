@@ -12,8 +12,10 @@ import com.pb.joindata.zhihudemo.base.BaseActivity;
 public class SplashActivity extends BaseActivity {
     private static final int mSleepTime = 800; // 闪屏停留的时间
     private Handler handler=new Handler();
+
+
     @Override
-    protected void initData() {
+    protected void initView() {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -21,11 +23,6 @@ public class SplashActivity extends BaseActivity {
                 SplashActivity.this.finish();
             }
         },mSleepTime);
-    }
-
-    @Override
-    protected void initView() {
-//        initData();
     }
     @Override
     protected int initContentView() {

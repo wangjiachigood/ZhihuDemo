@@ -67,7 +67,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             viewPagerViewHolder.vp_top_stories.init(newsTimeLine.getTop_stories(), viewPagerViewHolder.tv_top_title, new TopStoriesViewPager.ViewPagerClickListenner() {
                 @Override
                 public void onClick(TopStories item) {
-                    ZhiHuWebActivity.launch(mContext);
+                    ZhiHuWebActivity.launch(mContext,item.getId());
                 }
             });
 

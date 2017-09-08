@@ -24,7 +24,6 @@ public class ZhiHuFgPresenter implements IBasePresenter {
     }
 
 
-
     @Override
     public void getData() {
         mFragmentModel.getMovie(new OnHttpCallBack<NewsTimeLine>() {
@@ -32,6 +31,7 @@ public class ZhiHuFgPresenter implements IBasePresenter {
             public void onSuccessful(NewsTimeLine newsTimeLine) {
                 time = newsTimeLine.getDate();
                 mZhiHuView.refreshList(newsTimeLine);
+
                 Log.e("------>", newsTimeLine.toString());
             }
 
@@ -47,13 +47,13 @@ public class ZhiHuFgPresenter implements IBasePresenter {
         mFragmentModel.loadMoreNews(time, new OnHttpCallBack<NewsTimeLine>() {
             @Override
             public void onSuccessful(NewsTimeLine newsTimeLine) {
-                mZhiHuView.loadMoreList(newsTimeLine);
-                Log.d("newsTimeLine",newsTimeLine.toString());
+                    mZhiHuView.loadMoreList(newsTimeLine);
+                Log.d("newsTimeLine", newsTimeLine.toString());
             }
 
             @Override
             public void onFaild(String errorMsg) {
-                Log.d("newsTimeLine",errorMsg);
+                Log.d("newsTimeLine", errorMsg);
             }
         });
     }

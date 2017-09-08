@@ -2,6 +2,7 @@ package com.pb.joindata.zhihudemo.ui.Contract;
 
 import com.pb.joindata.zhihudemo.bean.gank.Meizhi;
 import com.pb.joindata.zhihudemo.bean.more.DailyTimeLine;
+import com.pb.joindata.zhihudemo.bean.zhihu.News;
 import com.pb.joindata.zhihudemo.bean.zhihu.NewsTimeLine;
 
 /**
@@ -14,6 +15,8 @@ public interface IBaseModel {
         void getMovie(OnHttpCallBack<NewsTimeLine> callBack);//获取知乎信息
 
         void loadMoreNews(String time,OnHttpCallBack<NewsTimeLine> callBack);//加载更多信息
+
+        void getNewsDetail(String id, OnHttpCallBack<News> callBack);
 
 
     }

@@ -7,4 +7,6 @@
     <!--Splash-->
     <color name="trangery">#512e2e2e</color>
     <color name="white">#FFFFFF</color>
+    <color name="black">#252525</color>
+    <color name="darkgery">#797979</color>
 </resources>

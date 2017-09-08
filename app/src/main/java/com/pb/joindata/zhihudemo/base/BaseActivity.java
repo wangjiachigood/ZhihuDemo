@@ -14,18 +14,18 @@ import com.pb.joindata.zhihudemo.R;
 
 public abstract class BaseActivity extends AppCompatActivity {
     private boolean mIsDestroyed = false;
+    protected BaseFragment mFragment;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getSupportActionBar() != null){
+        if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
         setContentView(initContentView());
         initView();
-        initData();
     }
 
-    protected abstract void initData();
 
     /**
      * 绑定布局文件
@@ -35,10 +35,12 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected int initContentView() {
         return R.layout.base_fragment_activity;
     }
+
     /**
      * 初始化视图控件
      */
     protected abstract void initView();
+
     public void replaceFragment(Fragment newFragment) {
         replaceFragment(newFragment, null, false);
     }
@@ -59,6 +61,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             transaction.commitAllowingStateLoss();
         }
     }
+
     public boolean isDestroyed() {
         try {
             return super.isDestroyed();

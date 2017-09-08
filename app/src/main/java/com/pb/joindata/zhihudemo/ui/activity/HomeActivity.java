@@ -2,7 +2,6 @@ package com.pb.joindata.zhihudemo.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
@@ -10,9 +9,9 @@ import android.support.v7.widget.Toolbar;
 import com.pb.joindata.zhihudemo.R;
 import com.pb.joindata.zhihudemo.base.BaseActivity;
 import com.pb.joindata.zhihudemo.ui.adapter.ViewPageAdapter;
-import com.pb.joindata.zhihudemo.ui.fragment.ZhiHuFragment;
-import com.pb.joindata.zhihudemo.ui.fragment.MoreFragment;
 import com.pb.joindata.zhihudemo.ui.fragment.GankFragment;
+import com.pb.joindata.zhihudemo.ui.fragment.MoreFragment;
+import com.pb.joindata.zhihudemo.ui.fragment.ZhiHuFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +24,6 @@ public class HomeActivity extends BaseActivity{
     private Toolbar mToolbar;
     private TabLayout mTablayout;
     private ViewPager mViewpage;
-    private AppBarLayout mAppBar;
     private List mList = new ArrayList();
 
     public static void launch(Context context){
@@ -37,8 +35,13 @@ public class HomeActivity extends BaseActivity{
     }
 
 
+
+
     @Override
-    protected void initData() {
+    protected void initView() {
+        mTablayout = (TabLayout) findViewById(R.id.tab_layout);
+        mViewpage = (ViewPager) findViewById(R.id.content_viewPager);
+        mToolbar= (Toolbar) findViewById(R.id.toolbar);
         mToolbar.setTitle("知乎");
         mList.add(new ZhiHuFragment());
         mList.add(new GankFragment());
@@ -46,14 +49,6 @@ public class HomeActivity extends BaseActivity{
         mViewpage.setOffscreenPageLimit(3);
         mViewpage.setAdapter(new ViewPageAdapter(getSupportFragmentManager(),mList,"main_view_pager"));
         mTablayout.setupWithViewPager(mViewpage);
-    }
-
-    @Override
-    protected void initView() {
-        mTablayout = (TabLayout) findViewById(R.id.tab_layout);
-        mViewpage = (ViewPager) findViewById(R.id.content_viewPager);
-        mToolbar= (Toolbar) findViewById(R.id.toolbar);
-        mAppBar= (AppBarLayout) findViewById(R.id.app_bar_layout);
     }
 
     @Override
