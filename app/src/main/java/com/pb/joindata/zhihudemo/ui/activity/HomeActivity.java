@@ -12,6 +12,7 @@ import com.pb.joindata.zhihudemo.ui.adapter.ViewPageAdapter;
 import com.pb.joindata.zhihudemo.ui.fragment.GankFragment;
 import com.pb.joindata.zhihudemo.ui.fragment.MoreFragment;
 import com.pb.joindata.zhihudemo.ui.fragment.ZhiHuFragment;
+import com.pb.joindata.zhihudemo.ui.utils.SystemUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,10 @@ public class HomeActivity extends BaseActivity{
     }
 
 
-
+    @Override
+    protected void initWindows() {
+        SystemUtils.setTranslucentStatusBar(this, R.color.transparent, false);
+    }
 
     @Override
     protected void initView() {

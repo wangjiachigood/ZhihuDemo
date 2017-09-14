@@ -11,9 +11,12 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.pb.joindata.zhihudemo.R;
 import com.pb.joindata.zhihudemo.bean.zhihu.NewsTimeLine;
+import com.pb.joindata.zhihudemo.bean.zhihu.Stories;
 import com.pb.joindata.zhihudemo.bean.zhihu.TopStories;
 import com.pb.joindata.zhihudemo.ui.activity.ZhiHuWebActivity;
 import com.pb.joindata.zhihudemo.widget.TopStoriesViewPager;
+
+import static com.pb.joindata.zhihudemo.R.id.card_stories;
 
 /**
  * Created by wangjiachi on 2017/8/7.
@@ -21,7 +24,7 @@ import com.pb.joindata.zhihudemo.widget.TopStoriesViewPager;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private NewsTimeLine newsTimeLine;
-    private Context mContext;
+    private static Context mContext;
     private static final int TYPE_TOP = -1;
 
     public RecyclerViewAdapter(Context mContext, NewsTimeLine mList) {
@@ -59,7 +62,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         if (holder instanceof ItemViewHolder) {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
             itemViewHolder.tv_stories_title.setText(newsTimeLine.getStories().get(position).getTitle());
-            String[] images = newsTimeLine.getStories().get(position).getImages();
+            ItemViewHolder.bindItem(newsTimeLine.getStories().get(position));            String[] images = newsTimeLine.getStories().get(position).getImages();
             Glide.with(mContext).load(images[0]).centerCrop().into(itemViewHolder.iv_stories_img);
         } else if (holder instanceof ViewPagerViewHolder) {
             ViewPagerViewHolder viewPagerViewHolder = (ViewPagerViewHolder) holder;
@@ -67,7 +70,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             viewPagerViewHolder.vp_top_stories.init(newsTimeLine.getTop_stories(), viewPagerViewHolder.tv_top_title, new TopStoriesViewPager.ViewPagerClickListenner() {
                 @Override
                 public void onClick(TopStories item) {
-                    ZhiHuWebActivity.launch(mContext,item.getId());
+                    ZhiHuWebActivity.launch(mContext, item.getId());
                 }
             });
 
@@ -87,19 +90,30 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     static class ItemViewHolder extends RecyclerView.ViewHolder {
         public TextView tv_stories_title;
-        public CardView mCardview;
+        public static CardView mCardview;
         public ImageView iv_stories_img;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
             tv_stories_title = (TextView) itemView.findViewById(R.id.tv_stories_title);
-            mCardview = (CardView) itemView.findViewById(R.id.card_stories);
+            mCardview = (CardView) itemView.findViewById(card_stories);
             iv_stories_img = (ImageView) itemView.findViewById(R.id.iv_stories_img);
         }
+
+        public static void bindItem(final Stories stories) {
+            mCardview.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ZhiHuWebActivity.launch(mContext, stories.getId());
+                }
+            });
+
+        }
+
     }
 
-    static class ViewPagerViewHolder extends RecyclerView.ViewHolder {
-        private TopStoriesViewPager vp_top_stories;
+    class ViewPagerViewHolder extends RecyclerView.ViewHolder {
+        TopStoriesViewPager vp_top_stories;
         TextView tv_top_title;
 
         public ViewPagerViewHolder(View itemView) {

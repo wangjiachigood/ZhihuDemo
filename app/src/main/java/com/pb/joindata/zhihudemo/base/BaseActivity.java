@@ -1,10 +1,12 @@
 package com.pb.joindata.zhihudemo.base;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.WindowManager;
 
 import com.pb.joindata.zhihudemo.R;
 
@@ -24,6 +26,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
         setContentView(initContentView());
         initView();
+        initWindows();
+    }
+
+    protected  void initWindows(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
     }
 
 
@@ -35,6 +44,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected int initContentView() {
         return R.layout.base_fragment_activity;
     }
+
 
     /**
      * 初始化视图控件

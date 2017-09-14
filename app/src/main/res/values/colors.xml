@@ -5,6 +5,7 @@
     <color name="colorAccent">#FF4081</color>
 
     <!--Splash-->
+    <color name="transparent">#00000000</color>
     <color name="trangery">#512e2e2e</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#252525</color>
